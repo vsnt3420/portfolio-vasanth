@@ -1,10 +1,8 @@
-import { useSectionInView } from "@/lib/hook";
 import { IoArrowRedoSharp } from "react-icons/io5";
 import { Timeline } from "../ui/Timeline";
 import Heading from "./Headings";
 
 const Experience = () => {
-  const { ref } = useSectionInView("Experience", 0.5);
 
   const data = [
     {
@@ -123,7 +121,7 @@ const Experience = () => {
             <div className="flex items-start space-x-2">
               <IoArrowRedoSharp className="text-neutral-100 mt-1" />
               <span>
-                Utilizing React, Next.js, TypeScript, Tailwind, and MongoDB to
+                Utilizing React, Next.js, TypeScript, Tailwind CSS, and MongoDB to
                 build scalable and maintainable applications.
               </span>
             </div>
@@ -160,7 +158,7 @@ const Experience = () => {
   return (
     <section
       id="experience"
-      ref={ref}
+    
       className="relative flex flex-col w-full min-h-[calc(100vh)] z-40 lg:py-10"
     >
       <Heading

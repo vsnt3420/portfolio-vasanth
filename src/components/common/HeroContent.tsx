@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 
-import { useSectionInView } from "@/lib/hook";
 import { slideInFromLeft, slideInFromRight } from "@/lib/motion";
 import Image from "next/image";
 import { TypingEffect } from "../ui/TypingAnimation";
@@ -14,8 +13,9 @@ import {
   IoPhonePortrait,
 } from "react-icons/io5";
 import { FloatingDock } from "../ui/Floating-Dock";
+import IconCloud from "../ui/icon-cloud";
+import { slugs } from "@/lib/data";
 const HeroContent = () => {
-  const { ref } = useSectionInView("Home", 0.5);
   const SocialsMedia = [
     {
       title: "Home",
@@ -45,7 +45,7 @@ const HeroContent = () => {
     },
   ];
   return (
-    <section ref={ref} id="home" className="relative z-40">
+    <section id="home" className="relative z-40">
       <motion.div
         initial="hidden"
         animate="visible"
@@ -84,7 +84,6 @@ const HeroContent = () => {
           <motion.div
             className="flex items-center justify-center"
             variants={slideInFromLeft(0.8)}
-           
           >
             <FloatingDock items={SocialsMedia} />
           </motion.div>
@@ -92,15 +91,9 @@ const HeroContent = () => {
 
         <motion.div
           variants={slideInFromRight(0.8)}
-          className="w-full h-full flex justify-center items-center mt-10 md:mt-0"
+          className="hidden w-full h-full lg:flex justify-center items-center mt-10 md:mt-0"
         >
-          <Image
-            src="/mainIconsdark.svg"
-            alt="work icons"
-            height={500}
-            width={500}
-            className="hidden md:block"
-          />
+          <IconCloud iconSlugs={slugs}  />
         </motion.div>
       </motion.div>
     </section>

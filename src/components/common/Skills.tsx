@@ -1,20 +1,25 @@
-import {
-  Backend_skill,
-  Frontend_skill,
-  Full_stack,
-  Other_skill,
-  Skill_data,
-} from "@/lib/data";
-import { useSectionInView } from "@/lib/hook";
+import { skillsData } from "@/lib/data";
+import { motion } from "framer-motion";
 import Heading from "./Headings";
-import SkillDataProvider from "./SkillDataProvider";
+
+const fadeInAnimationVariants = {
+  initial: {
+    opacity: 0,
+    y: 100,
+  },
+  animate: (index: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: {
+      delay: 0.05 * index,
+    },
+  }),
+};
 
 const Skills = () => {
-  const { ref } = useSectionInView("Skills", 0.5);
   return (
     <section
       id="skills"
-      ref={ref}
       className="flex flex-col items-center justify-center gap-3 min-h-[calc(100vh)] relative overflow-hidden lg:py-10"
       style={{ transform: "scale(0.9" }}
     >
@@ -24,60 +29,23 @@ const Skills = () => {
       />
 
       <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Skill_data.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Frontend_skill.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Backend_skill.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Full_stack.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
-      </div>
-      <div className="flex flex-row justify-around flex-wrap mt-4 gap-5 items-center">
-        {Other_skill.map((image, index) => (
-          <SkillDataProvider
-            key={index}
-            src={image.Image}
-            width={image.width}
-            height={image.height}
-            index={index}
-          />
-        ))}
+        <ul className="max-w-5xl flex flex-wrap justify-center gap-6 text-lg text-neutral-100 ">
+          {skillsData.map((skill, index) => (
+            <motion.li
+              className="rounded-xl px-5 py-3 backdrop-blur-lg  border border-neutral-300/50"
+              key={index}
+              initial="initial"
+              variants={fadeInAnimationVariants}
+              whileInView="animate"
+              viewport={{
+                once: true,
+              }}
+              custom={index}
+            >
+              {skill}
+            </motion.li>
+          ))}
+        </ul>
       </div>
     </section>
   );
