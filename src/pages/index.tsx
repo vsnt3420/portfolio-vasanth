@@ -10,7 +10,7 @@ import { Inter } from "next/font/google";
 
 const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+const Home = () => {
   return (
     <main
       className={`${inter.className} w-full flex flex-col min-h-screen px-5 sm:px-20 bg-neutral-950 overflow-x-hidden`}
@@ -25,4 +25,5 @@ export default function Home() {
       <Footer />
     </main>
   );
-}
+};
+export default Home;
